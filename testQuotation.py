@@ -1,16 +1,13 @@
 #encoding=utf-8
 __author__ = 'yao xu'
 
-import easyquotation
-import time
+import Strategy
+
 
 
 if __name__ == '__main__':
-    while True:
-        quotation = easyquotation.use('sina')
-        result = quotation.stocks(['601919','600616'])
-        print(result)
-        time.sleep(1)
+    new_strategy = Strategy.Strategy()
+    new_strategy.run()
 
 '''def onInterval():
     quotation = easyquotation.use('sina')
