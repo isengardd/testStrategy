@@ -12,7 +12,7 @@ class Strategy:
     def __init__(self):
         self.m_stocks = StockPool.StockPool()
         self.m_quotation = easyquotation.use('sina')
-        self.m_trader = easytrader.use('yjb', False)
+        self.m_trader = easytrader.use('gf', False)
         config_path = os.path.dirname(__file__) + '/trader_config.json'
         self.m_trader.prepare(config_path)
 
@@ -55,10 +55,13 @@ class Strategy:
             result = self.m_quotation.stocks(stock_data.id)
             if result is None:
                 easytrader.log.info("request %s stock info failed!" %stock_data.id)
+                continue
             else :
                 print(result)
+                # todo: 解析result ，并更新历史最高价（如果需要的话）
+
             #决定是否交易
-            self.decide_sell()
+            self.decide_sell(stock_data)
             self.decide_buy()
 
         #从委托列表中执行相应的命令
@@ -67,10 +70,25 @@ class Strategy:
     def load_stock_pool(self):
         self.m_stocks.load_stock_pool()
 
-    def decide_sell(self):
+    def decide_sell(self, stock_data):
+        # 如果未持有股票，直接返回
+        if self.is_hold_stock() == False:
+            return
+
+        # todo:获取持仓信息
+
+    def decide_buy(self, stock_data):
+        #如果已持有股票，暂时不考虑追加持有
+        if self.is_hold_stock():
+            return
+
+        # todo:根据当前价格决定是否购买
+
+    def sell_stock(self):
         pass
 
-    def decide_buy(self):
+    def buy_stock(self):
         pass
 
-
+    def is_hold_stock(self):
+        return False

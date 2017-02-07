@@ -6,12 +6,16 @@ import os
 import json
 
 class StockData:
-    def __init__(self, stock_id, price_high, price_after_buy, price_N, price_recent_avg):
+    def __init__(self, stock_id, price_high, price_high_after_buy, price_N, price_recent_avg):
         self.id = stock_id
+        # 近期高点
         self.price_high = price_high
+        # 股票的N值
         self.price_N = price_N
+        # 股票近期的平均值
         self.price_recent_avg = price_recent_avg
-        self.price_after_buy = price_after_buy
+        # 购买后的最高值
+        self.price_high_after_buy = price_high_after_buy
 class StockPool:
     def __init__(self):
         self.m_stock_pool = dict()
