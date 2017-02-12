@@ -16,6 +16,23 @@ class StockData:
         self.price_recent_avg = price_recent_avg
         # 购买后的最高值
         self.price_high_after_buy = price_high_after_buy
+        # 今日最高价
+        self.price_high_today  = 0
+        # 昨日收盘价
+        self.close = 0
+
+    def update_price(self, curPrice, closePrice):
+        if curPrice > self.price_high_after_buy:
+            self.price_high_after_buy = curPrice
+
+        if curPrice > self.price_high:
+            self.price_high = curPrice
+
+        if curPrice > self.price_high_today:
+            self.price_high_today = curPrice
+
+        self.close = closePrice
+        #todo:更新数据库数据
 class StockPool:
     def __init__(self):
         self.m_stock_pool = dict()

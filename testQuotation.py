@@ -4,10 +4,9 @@ __author__ = 'yao xu'
 import Strategy
 
 
-
 if __name__ == '__main__':
     new_strategy = Strategy.Strategy()
-    new_strategy.run()
+    new_strategy.exec_strategy()
 
 '''def onInterval():
     quotation = easyquotation.use('sina')
